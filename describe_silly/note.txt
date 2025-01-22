@@ -1,4 +1,5 @@
-This just for fun
+Just a fun little project.
 
-And to describe code for beginners.
-I know it's sillly.
+This script is designed with beginners in mind. 
+I know it might seem simple, but it serves a useful purpose—helping you quickly grab documentation files like `.txt` or `.md` from Git repositories without the need to download the entire repo or rely on extensive web searches.
+It’s a quick and efficient way to access important details across different versions.
