@@ -1,20 +1,29 @@
 ===============================================================================
-CHEATSHEET  > cht.sh                        A GUIDE TO USE FZF IN cht.sh
+CHEATSHEET  > cht.sh                        A GUIDE TO USING FZF WITH cht.sh
 ===============================================================================
-cht.sh is a website that has many languages and utils cheatsheet.
+`cht.sh` is a fantastic tool that provides cheat sheets for a variety of 
+programming languages and core utilities—all in your terminal!
 
-GET LANGAUGAES AND CORE-UTILS
 -------------------------------------------------------------------------------
-use tr to replace `whitespace` with `newline`. Just echo a string seperated by
-`whitespace` or any other character ( check how tr works )
-use same techniques with core-utils.
+FETCHING LANGUAGES AND CORE UTILITIES
+-------------------------------------------------------------------------------
+Use `tr` to replace spaces with newlines. For example:  
+`echo "language1 language2" | tr ' ' '\n'`  
 
-FUZZY-FIND fzf 
--------------------------------------------------------------------------------
-now print all the langauages and core-utils and pipe it into fzf
-piping it into fzf will result in a fzf search window, which fuzzy-finds the
-strings present in printf.
+This trick lets you turn a space-separated list into a newline-separated one.  
+You can use this technique for both programming languages and core utilities 
+(e.g., `xargs`, `find`, `sed`).  
 
-CHT.SH
+💡 **Tip**: Check out how `tr` works to explore more possibilities!
+
 -------------------------------------------------------------------------------
-use basic curl cht.sh/selected/query
+FUZZY SEARCH WITH fzf
+-------------------------------------------------------------------------------
+Combine your lists of languages and utilities, then pipe them into `fzf`.  
+This opens a fuzzy search window where you can quickly find what you’re looking 
+for. Example:  
+
+```bash
+languages="python cpp java"  
+core_utils="find xargs awk"  
+printf "$languages\n$core_utils" | fzf  

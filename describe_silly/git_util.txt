@@ -1,17 +1,23 @@
 ===============================================================================
 GIT UTILS
 ===============================================================================
-Contains all essential utilities for git cloning. Basic idea: I wanted docs in
-txt or md formats and didn't wanted to search for web docs also, didn't wanted 
-to download whole repo for just docs.
+A handy collection of tools to make working with Git repositories easier. 
+The idea? I wanted a quick way to grab documentation files (`.txt`, `.md`) 
+without downloading the whole repo or digging through web searches.
 
-We can now have docs of depricated or latest versions.
+With this script, you can easily pull docs from older versions, deprecated 
+releases, or the latest updates—all without the hassle.
 
-COMMANDLINE ARGUMENTS
 -------------------------------------------------------------------------------
-get the protocol used, as it is essential for git archive
+COMMAND-LINE ARGUMENTS
+-------------------------------------------------------------------------------
+This script figures out the protocol (like HTTPS) you're using because it’s 
+important for certain operations (e.g., `git archive`).
 
-NOTE: doesn't work yet perfectly
-UPDATE: will update the guide after making something working
+⚠️ **Heads up**: Some methods, like `git archive` over HTTPS, aren’t fully 
+functional yet. 
+💡 **What’s next?** I’m working on fixes and improvements, so stay tuned for 
+updates and a more detailed guide once it’s all sorted!
+
 
 
