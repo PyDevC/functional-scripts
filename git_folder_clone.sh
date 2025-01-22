@@ -6,27 +6,28 @@ branch=""
 dir=""
 method=""
 
-# doesn't work for shuffled arguments
-# fix not working
-# maybe traversal will help
-while [ $# -gt 0 ]; do
-    protocol=("${1//// }") 
-    protocol=($(echo $protocol | tr " " " " ))
-    protocol="${protocol[0]}"
+###############################
+# GET PROTOCOL #
+###############################
+protocol=("${1//// }") 
+protocol=($(echo $protocol | tr " " " " ))
+protocol="${protocol[0]}"
 
-    if [ "$protocol" == "https:" ]; then
-        url="$1"
-    elif [ "$2" != "" ]; then
-        dir="$2"
-    elif [ "$3" != "" ]; then
-        branch="$3"
-    elif [ "$4" != ""  ]; then
-        method="$4"
-    else
-        echo "wrong arguments check help"
-    fi
-    shift
-done
+###################################
+# WILL UPDATE LATER #
+###################################
+if [ "$protocol" == "https:" ]; then
+    url="$1"
+fi
+if [ "$2" != "" ]; then
+    dir="$2"
+fi
+if [ "$3" != "" ]; then
+    branch="$3"
+fi
+if [ "$4" != ""  ]; then
+    method="$4"
+fi
 
 help(){
     desc="A useful git script for multi-purpose"
