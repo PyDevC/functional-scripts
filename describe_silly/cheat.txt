@@ -1,0 +1,20 @@
+===============================================================================
+CHEATSHEET  > cht.sh                        A GUIDE TO USE FZF IN cht.sh
+===============================================================================
+cht.sh is a website that has many languages and utils cheatsheet.
+
+GET LANGAUGAES AND CORE-UTILS
+-------------------------------------------------------------------------------
+use tr to replace `whitespace` with `newline`. Just echo a string seperated by
+`whitespace` or any other character ( check how tr works )
+use same techniques with core-utils.
+
+FUZZY-FIND fzf 
+-------------------------------------------------------------------------------
+now print all the langauages and core-utils and pipe it into fzf
+piping it into fzf will result in a fzf search window, which fuzzy-finds the
+strings present in printf.
+
+CHT.SH
+-------------------------------------------------------------------------------
+use basic curl cht.sh/selected/query

@@ -1,0 +1,17 @@
+===============================================================================
+GIT UTILS
+===============================================================================
+Contains all essential utilities for git cloning. Basic idea: I wanted docs in
+txt or md formats and didn't wanted to search for web docs also, didn't wanted 
+to download whole repo for just docs.
+
+We can now have docs of depricated or latest versions.
+
+COMMANDLINE ARGUMENTS
+-------------------------------------------------------------------------------
+get the protocol used, as it is essential for git archive
+
+NOTE: doesn't work yet perfectly
+UPDATE: will update the guide after making something working
+
+
