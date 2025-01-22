@@ -1,0 +1,3 @@
+write test files for each script
+python local build form source
+
