@@ -5,6 +5,7 @@ url=""
 branch=""
 dir=""
 method=""
+branch_example_names="main master trunk"
 
 ###############################
 # GET PROTOCOL #
@@ -12,6 +13,15 @@ method=""
 protocol=("${1//// }") 
 protocol=($(echo $protocol | tr " " " " ))
 protocol="${protocol[0]}"
+
+
+if [ $# -gt 2 ]; then
+    branch=`grep "$branch_example_names"`
+
+fi
+
+
+
 
 ###################################
 # WILL UPDATE LATER #
