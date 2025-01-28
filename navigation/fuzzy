@@ -1,0 +1,16 @@
+#!/bin/bash
+
+dir(){
+    local selected_dir
+    local search_dir=~/* 
+    if [[ $# -gt 0 ]]; then
+        search_dir=$1
+    fi
+    selected_dir=$(find $search_dir -type d | fzf +m --height 50% --preview 'tree -C {}')
+    echo $selected_dir
+}
+
+dir $2 
+# you can add alias to .bashrc or any other for
+# alias cdd='cd $(fuzzy dir ~/personal)'
+# alias cds='cd $(fuzzy dir)'

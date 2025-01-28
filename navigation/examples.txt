@@ -1,0 +1,17 @@
+fuzzy -- fzf advanced usage
+==============================================================================
+Move to directories
+------------------------------------------------------------------------------
+It requires ./fuzzy dir to run the function
+
+ex:
+
+cd `./fuzzy dir`
+
+This will cd to the selected directory using fzf
+
+cd `./fuzzy dir ~/Desktop/`
+
+This will cd to selected directory using fzf. But you can only search using fzf
+in ~/Desktop/ directory
+

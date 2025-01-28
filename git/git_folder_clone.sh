@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 file=""
 url=""
@@ -56,6 +56,7 @@ help(){
     echo "--archive" $func_archive
     echo "--partial" $func_partial_clone
     echo "no argument passes" $func_simple_clone
+    echo $warnings
 }
 
 no_checkout(){
