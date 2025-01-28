@@ -1,16 +1,40 @@
 #!/bin/bash
 
-dir(){
-    local selected_dir
-    local search_dir=~/* 
+search(){
+    search_item=~/*
     if [[ $# -gt 0 ]]; then
-        search_dir=$1
+        search_item=$1
     fi
-    selected_dir=$(find $search_dir -type d | fzf +m --height 50% --preview 'tree -C {}')
+}
+
+dir(){
+    local search_item=~/*
+    if [[ $# -gt 0 ]]; then
+        search_item=$1
+    fi
+    local selected_dir
+    selected_dir=$(find $search_item  -type d | fzf +m --height 50% --preview 'tree -C {}')
     echo $selected_dir
 }
 
-dir $2 
+file(){
+    local search_item=~/*
+    if [[ $# -gt 0 ]]; then
+        search_item=$1
+    fi
+    local selected_file
+    selected_dir=$(find $search_item -type f | fzf +m --height 50% --preview 'tree -C {}')
+    echo $selected_dir
+}
+
+case $1 in 
+    "dir")
+        dir $2;;
+    "file")
+        file $2;;
+esac
+
 # you can add alias to .bashrc or any other for
 # alias cdd='cd $(fuzzy dir ~/personal)'
 # alias cds='cd $(fuzzy dir)'
+# alias cdf='cd $(fuzzy file)'
