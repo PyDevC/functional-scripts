@@ -1,19 +1,21 @@
 #!/bin/bash
 
-OPT_LOCATION="" # Location where mv cp will be moved to 
+# OPT_LOCATION Location where mv cp will be moved to 
+if [[ $OPT_LOCATION == "" ]]; then
+    export OPT_LOACTION=$HOME
+fi
 
 search_location(){ # searches for the location for find function
-    location=$HOME
+    local location=$HOME
     if [[ $# -gt 0 ]]; then
         location=$1
     fi
-    echo $loaction
+    echo $location
 }
 
 select_location(){ # used to select OPT_LOCATION using fzf
     if [[ $1 == "" || $OPT_LOCATION == "" ]]; then
-        # TODO: ON fzf display window write choose destination 
-        selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
+        selected=$(find `search_location` | fzf +m --height 50% --style full --input-label ' Destination ' --preview 'tree -C {}')
         OPT_LOCATION=$selected
         echo destination is saved
     elif [[ $# -gt 0 ]]; then
@@ -30,11 +32,12 @@ dir(){ # searches for directories
 file(){ # searchers for files
     local selected_file
     selected_file=$(find `search_location $1` -type f | fzf +m --height 50% --preview 'tree -C {}')
-    echo $selected_file # use cut to find the directory in which it is stored 
+    echo `dirname $selected_file` 
 }
 
 remove(){
     # searches for both files and directories
+    local selected
     selected=$(find `search_location $1` | fzf +m --height 50% --preview 'tree -C {}')
 
     if [[ $1 == "--forced" ]]; then
@@ -46,12 +49,14 @@ remove(){
 }
 
 move(){
+    local selected
     selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
     select_location $1
     mv $selected $OPT_LOCATION
 }
 
-copy(){
+copy(){ # fix move and copy
+    local selected
     selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
     select_location $1
     cp $selected $OPT_LOCATION
@@ -76,3 +81,4 @@ esac
 # alias cdd='cd $(fuzzy dir ~/personal)'
 # alias cds='cd $(fuzzy dir)'
 # alias cdf='cd $(fuzzy file)'
+# requires fzf version 0.58
