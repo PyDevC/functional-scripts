@@ -1,30 +1,60 @@
 #!/bin/bash
 
-search(){
-    search_item=~/*
+OPT_LOCATION="" # Location where mv cp will be moved to 
+
+search_location(){ # searches for the location for find function
+    location=$HOME
     if [[ $# -gt 0 ]]; then
-        search_item=$1
+        location=$1
+    fi
+    echo $loaction
+}
+
+select_location(){ # used to select OPT_LOCATION using fzf
+    if [[ $1 == "" || $OPT_LOCATION == "" ]]; then
+        # TODO: ON fzf display window write choose destination 
+        selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
+        OPT_LOCATION=$selected
+        echo destination is saved
+    elif [[ $# -gt 0 ]]; then
+        OPT_LOCATION=$1
     fi
 }
 
-dir(){
-    local search_item=~/*
-    if [[ $# -gt 0 ]]; then
-        search_item=$1
-    fi
+dir(){ # searches for directories
     local selected_dir
-    selected_dir=$(find $search_item  -type d | fzf +m --height 50% --preview 'tree -C {}')
+    selected_dir=$(find `search_location $1` -type d | fzf +m --height 50% --preview 'tree -C {}')
     echo $selected_dir
 }
 
-file(){
-    local search_item=~/*
-    if [[ $# -gt 0 ]]; then
-        search_item=$1
-    fi
+file(){ # searchers for files
     local selected_file
-    selected_dir=$(find $search_item -type f | fzf +m --height 50% --preview 'tree -C {}')
-    echo $selected_dir
+    selected_file=$(find `search_location $1` -type f | fzf +m --height 50% --preview 'tree -C {}')
+    echo $selected_file # use cut to find the directory in which it is stored 
+}
+
+remove(){
+    # searches for both files and directories
+    selected=$(find `search_location $1` | fzf +m --height 50% --preview 'tree -C {}')
+
+    if [[ $1 == "--forced" ]]; then
+        rm -r $selected
+    else
+        mv $selected $S_TRASH 
+        # S_TRASH is a system var which stores location of secondary trash folder
+    fi
+}
+
+move(){
+    selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
+    select_location $1
+    mv $selected $OPT_LOCATION
+}
+
+copy(){
+    selected=$(find `search_location` | fzf +m --height 50% --preview 'tree -C {}')
+    select_location $1
+    cp $selected $OPT_LOCATION
 }
 
 case $1 in 
@@ -32,6 +62,14 @@ case $1 in
         dir $2;;
     "file")
         file $2;;
+    "rm")
+        remove $2;;
+    "mv")
+        move $2;;
+    "cp")
+        copy $2;;
+    *)
+        echo "command not found"
 esac
 
 # you can add alias to .bashrc or any other for
