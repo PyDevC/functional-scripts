@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 dir=$HOME # directory to search into 
 command="--"
@@ -20,38 +20,33 @@ git_exec(){
   # $1 is for directory name
   # $2 is for command
   # $3 is for another method
-  output=`git -C $1 $2 $3`
-  if [[ $output != "" ]]; then
-    printf "\n*********************[$1]*********************\n"
-    echo $output
-    printf "\n"
+  # output=`git -C $1 $2 $3`
+#  if [[ $output != "" ]]; then
+    printf "*********************[$1]*********************\n"
+#    echo $output
+#    printf "\n"
+#  fi
+  git -C $1 $2 $3
+}
+
+status(){
+  # $1 is for directory name
+  # $2 for method
+  if [[ $2 == "" ]];then
+    git_exec $1 "status" "--porcelain"
+  else
+    git_exec $1 "status" $2
   fi
 }
 
-git_status(){
+log(){
   # $1 is for directory name
-  git_exec $1 "status" "--porcelain"
-}
-
-
-git_commit(){
-  # $1 is for directory name
-  # $2 to choose between all or select --added later
-  echo $1
-  read -p "Do you want to commit you changes to this repo [Y/n]: " confirm
-  if [[ $confirm == "y" || $confirm == "Y" ]]; then
-    read -p "Enter commit message: " message
-    git_exec $1 "commit -m" $message
-  elif [[ $confirm == "n" || $confirm == "N" ]]; then
-    echo "exiting..."
+  # $2 for the method
+  if [[ $2 == "" ]]; then
+    git_exec $1 "log" "--graph --oneline"
   else
-    echo "try again"
-  fi 
-}
-
-git_log(){
-  # $1 is for directory name
-  git_exec $1 "log" "--graph --oneline"
+    git_exec $1
+  fi
 }
 
 while [[ $# -gt 0 ]]; do 
@@ -65,10 +60,11 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
+
 repo=`all_repo $dir`
 
 for d in $repo; do
   for query in $queries;do
-   git_exec $d "status" "--porcelain"
+    $query $d $method
   done
 done
