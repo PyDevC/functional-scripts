@@ -24,12 +24,13 @@ git_exec(){
   # $1 is for directory name
   # $2 is for command
   # $3 is for another method
-  printf "*********************[$1]*********************\n\n"
   if [[ $formatted == "1" ]];then
+    printf "*********************[$1]*********************\n\n"
     git -C $1 --no-pager $2 $3
   else
     output=`git -C $1 --no-pager $2 $3`
     if [[ $output != "" ]]; then
+      printf "*********************[$1]*********************\n\n"
       echo $output
     fi
     printf "\n"
@@ -73,6 +74,7 @@ done
 
 
 repo=`all_repo $dir`
+echo $formatted
 
 for d in $repo; do
   for query in $queries;do
