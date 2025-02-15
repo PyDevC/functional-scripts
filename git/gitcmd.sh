@@ -27,13 +27,14 @@ git_exec(){
   if [[ $formatted == "1" ]];then
     printf "*********************[$1]*********************\n\n"
     git -C $1 --no-pager $2 $3
+    printf "\n"
   else
     output=`git -C $1 --no-pager $2 $3`
     if [[ $output != "" ]]; then
-      printf "*********************[$1]*********************\n\n"
+      printf "*********************[$1]*********************\n"
       echo $output
+      printf "\n"
     fi
-    printf "\n"
   fi
 }
 
