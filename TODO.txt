@@ -1,5 +1,1 @@
-write test files for each script
-python local build form source
-Get the git archive working 
-Implement cli for git_folder_clone
 
