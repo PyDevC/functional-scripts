@@ -1,0 +1,67 @@
+# global definitions
+
+Location:
+  search: ""
+  trash: ""
+
+Behavior:
+  search: ""
+  scheme: ""
+  algo: ""
+  sort: ""
+
+Input: ""
+
+Layout_style:
+  style: ""
+  display: 
+    height: ""
+    tmux: ""
+  layout: 
+    layout: ""
+    margin: ""
+    padding: ""
+    border: ""
+  preview: 
+    preview: ""
+    border: ""
+    label: ""
+    window: ""
+  header: 
+    header: ""
+    lines: ""
+    border: ""
+    label: ""
+
+Theme:
+  color:  
+    base_scheme: ""
+    fg: ""
+    bg: ""
+    hl: ""
+    current-line: 
+      fg: ""
+      bg: ""
+    query: ""
+    info: ""
+    border: 
+      list-border: 
+        scrollbar: ""
+        seperator: ""
+        gap-line: ""
+      preview-border: ""
+      preview-scrollbar: ""
+      input-border: ""
+      header-border: ""
+    label: 
+      list-label: ""
+      preview-label: ""
+      input-label: ""
+      header-label: ""
+    prompt: ""
+    pointer: ""
+    marker: ""
+    spinner: ""
+    header: ""
+    nth: ""
+    
