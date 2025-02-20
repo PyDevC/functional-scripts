@@ -16,8 +16,9 @@ find_dir(){
 
 
 selection(){
+  # $1 should be a function call
   local selected
-  selected="fzf `./specs`" # gets a selected files from
+  selected=`$1 | fzf` # gets a selected files from
   echo "$selected"
 }
 
