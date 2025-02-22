@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SEARCH=$HOME
+SEARCH=$HOME # fzf searches in this directory
 
 set_location(){
   # sets a new location for fzf to search
@@ -16,7 +16,6 @@ set_location(){
 }
 
 get_location(){
-  # gets the location of the main $SEARCH pretty useless unless you want to
-  # know the location where fzf will work
+  # gets the location of the main $SEARCH 
   echo $SEARCH
 }

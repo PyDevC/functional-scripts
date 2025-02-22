@@ -1,10 +1,10 @@
 local Lummander = require "lummander"
 
 local cli = Lummander.new{
-        title = "", 
+        title = "",
         description = "", -- later add descritption from other files
-        version = "", 
-        author = "", 
+        version = "",
+        author = "",
         theme = "acid", -- Default = "default". "default" and "acid" are built-in themes
         flag_prevent_help = false -- <boolean> Prevent help message if not command found. Default: false
     }
